@@ -1,0 +1,36 @@
+export default {
+  HO_SO: '/HoSo',
+  AUTH: {
+    DANG_NHAP: '/auth/login',
+    REFRESH_TOKEN: '/auth/refresh-token',
+  },
+  USER: {
+    NAME: '/users',
+    LAY_CHI_TIET_NGUOI_DUNG: '/users',
+    NGUOI_DUNG_GOM_QUYEN: '/users/search',
+    DANH_SACH_VAI_TRO_THEO_NGUOI_DUNG: '/users',
+    DANH_SACH_VAI_TRO_KHONG_THUOC_NGUOI_DUNG: '/users',
+    DANH_SACH_QUYEN_THEO_NGUOI_DUNG: '/users',
+    DANH_SACH_QUYEN_KHONG_THUOC_NGUOI_DUNG: '/users',
+    CAP_NHAT_VAI_TRO_THEO_NGUOI_DUNG: '/users',
+    CAP_NHAT_QUYEN_THEO_NGUOI_DUNG: '/users',
+    CAP_NHAT_EMAIL_NGUOI_DUNG: '/users',
+  },
+  PERMISSION: {
+    DANH_SACH_TAT_CA_QUYEN: '/permissions/search',
+  },
+  ROLE: {
+    DANH_SACH_QUYEN_THEO_VAI_TRO: '/roles',
+    DANH_SACH_QUYEN_KHONG_THUOC_VAI_TRO: '/roles',
+    CAP_NHAT_QUYEN_TRONG_VAI_TRO: '/roles',
+    NGUOI_DUNG_THEO_VAI_TRO: '/roles',
+    NGUOI_DUNG_KHONG_THUOC_VAI_TRO: '/roles',
+    THEM_NGUOI_DUNG_TRONG_VAI_TRO: '/roles',
+    XOA_NGUOI_DUNG_TRONG_VAI_TRO: '/roles',
+    CAP_NHAT_THONG_TIN_VAI_TRO: '/roles',
+    DANH_SACH_VAI_TRO: '/roles/search',
+    XOA_VAI_TRO: '/roles/',
+    TAO_VAI_TRO: '/roles',
+    CHI_TIET_VAI_TRO: '/roles',
+  },
+}
