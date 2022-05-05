@@ -52,7 +52,7 @@
             </div>
             <div>
               <h6 class="item-price">
-                {{ product.price }} đ
+                {{ product.price.toLocaleString() }} đ
               </h6>
             </div>
           </div>

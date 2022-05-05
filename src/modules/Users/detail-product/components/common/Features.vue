@@ -7,7 +7,7 @@
             icon="AwardIcon"
             size="35"
           />
-          <h4 class="mt-2 mb-1">
+          <h4 class="mt-2 mb-1 titleFeature">
             100% Chính hãng
           </h4>
           <p class="card-text">
@@ -21,7 +21,7 @@
             icon="ClockIcon"
             size="35"
           />
-          <h4 class="mt-2 mb-1">
+          <h4 class="mt-2 mb-1 titleFeature">
             10 Ngày đổi trả
           </h4>
           <p class="card-text">
@@ -35,7 +35,7 @@
             icon="ShieldIcon"
             size="35"
           />
-          <h4 class="mt-2 mb-1">
+          <h4 class="mt-2 mb-1 titleFeature">
             1 Năm bảo hành
           </h4>
           <p class="card-text">
@@ -51,4 +51,8 @@
 export default {}
 </script>
 
-<style></style>
+<style>
+.titleFeature {
+  color: red !important;
+}
+</style>

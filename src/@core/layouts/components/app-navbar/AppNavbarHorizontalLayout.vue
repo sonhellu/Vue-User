@@ -24,9 +24,9 @@
         class="d-flex storeTitle"
       >
         <h1 class="titleStore">
-          BOO
+          JUN
         </h1>
-        <span class="">store</span>
+        <span class="titleStoreaa">store</span>
       </b-link>
     </div>
 
@@ -67,14 +67,18 @@ export default {
 
 <style lang="scss">
 .headerProduct {
+  background: #008848;
   height: 4.5rem;
 }
 .titleStore {
-  color: #7367f0;
+  color: white;
   font-size: 40px;
   font-weight: 900;
   padding-top: 5px;
   cursor: pointer;
+}
+.titleStoreaa{
+   color: white;
 }
 .storeTitle {
   align-items: baseline;

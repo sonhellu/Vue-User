@@ -14,8 +14,6 @@
             </b-col>
           </b-row>
 
-          <!-- Filters' Card -->
-          {{ priceRangeDefined }}
           <b-card>
             <!-- Multi Range -->
             <div class="multi-range-price">
@@ -23,22 +21,10 @@
                 Khoảng giá
               </h6>
               <b-form-radio-group
-                v-model="priceRangeDefined"
+                v-model="filters.price"
                 class="price-range-defined-radio-group"
                 stacked
                 :options="filterOptions.priceRangeDefined"
-              />
-            </div>
-
-            <!-- Price Slider -->
-            <div class="price-slider">
-              <h6 class="filter-title">
-                Khoảng giá
-              </h6>
-              <vue-slider
-                v-model="filters.priceRange"
-                max="9999999"
-                :direction="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               />
             </div>
 
@@ -123,18 +109,17 @@
                   <span>Làm mới</span>
                 </b-button>
                 <b-dropdown
-                  v-model="filters.sort"
                   v-ripple.400="'rgba(113, 102, 240, 0.15)'"
-                  :text="sortBy.text"
+                  text="Mặc định"
                   right
                   variant="outline-primary"
                 >
                   <b-dropdown-item
-                    v-for="sortOption in sortByOptions"
-                    :key="sortOption.value"
-                    @click="sortBy = sortOption"
+                    v-for="item in sortByOptions"
+                    :key="item.value"
+                    @click="filters.sort = item.value"
                   >
-                    {{ sortOption.text }}
+                    {{ item.text }}
                   </b-dropdown-item>
                 </b-dropdown>
                 <!-- Item View Radio Button Group  -->
@@ -235,7 +220,7 @@
               </div>
               <div>
                 <h6 class="item-price">
-                  {{ product.price }} đ
+                  {{ product.price.toLocaleString() }} đ
                 </h6>
               </div>
             </div>
@@ -263,7 +248,7 @@
             <div class="item-wrapper">
               <div class="item-cost">
                 <h4 class="item-price">
-                  {{ product.price }} đ
+                  {{ product.price.toLocaleString() }} đ
                 </h4>
               </div>
             </div>
@@ -322,7 +307,7 @@ import {
 } from 'bootstrap-vue'
 import { mapGetters } from 'vuex'
 import Ripple from 'vue-ripple-directive'
-import VueSlider from 'vue-slider-component'
+// import VueSlider from 'vue-slider-component'
 // import FilterSideBar from '@/modules/Users/list-products-all/components/common/FilterSideBar.vue'
 
 export default {
@@ -346,8 +331,6 @@ export default {
     BImg,
     BCardText,
     BButton,
-    // BPagination,
-    VueSlider,
 
     // SFC
     // FilterSideBar,
@@ -366,8 +349,7 @@ export default {
         name: '',
         page: 0,
         sort: 0,
-        max_price: null,
-        min_price: null,
+        price: null,
         category: null,
       },
       sortBy: { text: 'Mặc định', value: '0' },
@@ -378,7 +360,7 @@ export default {
       ],
       filterOptions: {
         priceRangeDefined: [
-          { text: 'All', value: 'all' },
+          { text: 'Tất cả', value: 'null' },
           { text: '<= 500.000 đ', value: '500' },
           { text: '500.000 - 1.000.000 đ', value: '1000' },
           { text: '1.000.000 - 3.000.000 đ', value: '3000' },
@@ -427,12 +409,32 @@ export default {
         name: this.filters.name,
         page: this.filters.page,
         sort: this.filters.sort,
-        max_price: this.filters.max_price,
-        // min_price:
-        //   this.priceRangeDefined === '500' ? '0' : this.priceRangeDefined === "1000" ? "500000",
+        max_price:
+          /* eslint-disable no-nested-ternary */
+          this.filters.price === '500'
+            ? '500000'
+            : this.filters.price === '1000'
+              ? '1000000'
+              : this.filters.price === '3000'
+                ? '3000000'
+                : this.filters.price === '5000'
+                  ? null
+                  : null,
+        min_price:
+          /* eslint-disable no-nested-ternary */
+          this.filters.price === '500'
+            ? '0'
+            : this.filters.price === '1000'
+              ? '500000'
+              : this.filters.price === '3000'
+                ? '1000000'
+                : this.filters.price === '5000'
+                  ? '3000000'
+                  : null,
         category: this.filters.category,
       })
     },
+    checkMin() {},
     getAllProductCart() {
       this.$store.dispatch('qlUser/getAllProductCart', {
         id: this.UserInfor.id,

@@ -1,8 +1,8 @@
 <template>
   <b-card-body>
     <div class="mt-2 mb-2 text-center">
-      <h4>Related Products</h4>
-      <b-card-text>People also search for this items</b-card-text>
+      <h4> Sản phẩm tương tự</h4>
+      <b-card-text>Bạn cũng có thể biết mặt hàng này</b-card-text>
     </div>
 
     <!-- Swiper -->
@@ -11,7 +11,7 @@
       :options="swiperOptions"
     >
       <swiper-slide
-        v-for="(product, index) in relatedProducts"
+        v-for="(product, index) in danhSachProductAll"
         :key="index"
       >
         <b-link>
@@ -19,9 +19,9 @@
             <h5 class="text-truncate mb-0">
               {{ product.name }}
             </h5>
-            <small class="text-body">by {{ product.brand }}</small>
+            <small class="text-body">{{ product.category_name }}</small>
           </div>
-          <div class="img-container w-50 mx-auto py-75">
+          <div class="img-container w-100 mx-auto py-75">
             <b-img
               :src="product.image"
               fluid
@@ -46,7 +46,7 @@
               </li>
             </ul>
             <p class="card-text text-primary mb-0">
-              ${{ product.price }}
+              {{ product.price.toLocaleString() }} đ
             </p>
           </div>
         </b-link>
@@ -69,6 +69,7 @@
 import {
   BCardBody, BCardText, BImg, BLink,
 } from 'bootstrap-vue'
+import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 export default {
@@ -81,6 +82,19 @@ export default {
     // 3rd Party
     Swiper,
     SwiperSlide,
+  },
+  computed: {
+    ...mapGetters({
+      danhSachProductAll: 'qlUser/danhSachProductAll',
+    }),
+  },
+  created() {
+    this.layDanhSachProductAll()
+  },
+  methods: {
+    layDanhSachProductAll() {
+      this.$store.dispatch('qlUser/layDuLieuProductAll', { page: 0, sort: 0 })
+    },
   },
   setup() {
     const swiperOptions = {
@@ -112,48 +126,10 @@ export default {
 
     /* eslint-disable global-require */
     /* eslint-disable import/no-unresolved */
-    const relatedProducts = [
-      {
-        name: 'Apple Watch Series 6',
-        brand: 'Apple',
-        price: 399.98,
-        rating: 4,
-        image: require('@/assets/images/pages/eCommerce/27.png'),
-      },
-      {
-        name: 'Apple MacBook Pro - Silver',
-        brand: 'Apple',
-        price: 2449.49,
-        rating: 2,
-        image: require('@/assets/images/pages/eCommerce/27.png'),
-      },
-      {
-        name: 'Apple HomePod (Space Grey)',
-        brand: 'Apple',
-        price: 229.29,
-        rating: 3,
-        image: require('@/assets/images/pages/eCommerce/27.png'),
-      },
-      {
-        name: 'Magic Mouse 2 - Black',
-        brand: 'Apple',
-        price: 90.98,
-        rating: 5,
-        image: require('@/assets/images/pages/eCommerce/27.png'),
-      },
-      {
-        name: 'iPhone 12 Pro',
-        brand: 'Apple',
-        price: 1559.99,
-        rating: 4,
-        image: require('@/assets/images/pages/eCommerce/27.png'),
-      },
-    ]
-    /* eslint-disable global-require */
 
+    /* eslint-disable global-require */
     return {
       swiperOptions,
-      relatedProducts,
     }
   },
 }

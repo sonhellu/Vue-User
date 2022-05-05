@@ -22,6 +22,7 @@
         <feather-icon
           icon="UserIcon"
           size="22"
+          style="color : white"
         />
       </b-avatar>
     </div>
@@ -35,7 +36,7 @@
       >
         <template #button-content>
           <div class="d-sm-flex d-none user-nav mr-1 ml-0">
-            <p class="user-name font-weight-bolder mb-0">
+            <p class="user-name font-weight-bolder mb-0 titleNameUser">
               {{ UserData.username }}
             </p>
             <span class="user-status" />
@@ -50,6 +51,7 @@
             <feather-icon
               icon="UserIcon"
               size="22"
+              style="color : white"
             />
           </b-avatar>
         </template>
@@ -112,6 +114,10 @@ export default {
 
 <style lang="scss">
 .loginUser {
+  color: white;
   cursor: pointer;
+}
+.titleNameUser {
+  color: white !important;
 }
 </style>

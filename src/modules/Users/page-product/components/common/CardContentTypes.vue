@@ -6,7 +6,7 @@
         lg="6"
       >
         <b-card
-          :img-src="require('@/modules/Users/image/card1.jpg')"
+          :img-src="require('@/modules/Users/image/card3.jpg')"
           img-alt="Card image"
           img-top
         >
@@ -29,7 +29,7 @@
       />
       <b-col>
         <b-card
-          :img-src="require('@/modules/Users/image/card2.jpg')"
+          :img-src="require('@/modules/Users/image/card4.jpg')"
           img-bottom
           img-alt="card img"
           class="mb-3"

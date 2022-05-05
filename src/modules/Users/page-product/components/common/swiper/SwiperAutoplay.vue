@@ -64,12 +64,12 @@ export default {
         /* eslint-disable import/no-unresolved */
         /* eslint-disable global-require */
         /* eslint-disable import/no-extraneous-dependencies */
-        { img: require('@/modules/Users/image/slider1.jpg') },
-        { img: require('@/modules/Users/image/slider2.jpg') },
-        { img: require('@/modules/Users/image/slider3.jpg') },
-        { img: require('@/modules/Users/image/slider4.jpg') },
-        { img: require('@/modules/Users/image/slider5.jpg') },
-        { img: require('@/modules/Users/image/slider6.jpg') },
+        { img: require('@/modules/Users/image/quanao5.jpg') },
+        { img: require('@/modules/Users/image/quanao4.jpg') },
+        { img: require('@/modules/Users/image/quanao3.jpg') },
+        { img: require('@/modules/Users/image/quanao1.jpg') },
+        { img: require('@/modules/Users/image/quanao6.jpg') },
+        { img: require('@/modules/Users/image/quanao2.jpg') },
       ],
       /* eslint-disable global-require */
     }

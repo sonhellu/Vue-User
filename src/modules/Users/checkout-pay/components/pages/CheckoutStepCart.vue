@@ -154,7 +154,7 @@
                 Tổng giá
               </div>
               <div class="detail-amt font-weight-bolder">
-                {{ totalAmount }} đ
+                {{ totalAmount.toLocaleString() }} đ
               </div>
             </li>
           </ul>

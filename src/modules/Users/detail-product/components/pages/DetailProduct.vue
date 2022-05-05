@@ -25,13 +25,15 @@
           md="7"
         >
           <!-- Product Name -->
-          <h4 class="ml-0 pl-0">
+          <h4
+            class="ml-0 pl-0 titleName"
+          >
             {{ productDetail.name }}
           </h4>
 
           <!-- Product Brand -->
           <b-card-text class="item-company mb-0">
-            <span>by</span>
+            <span>Thể loại -</span>
             <b-link class="company-name">
               {{ productDetail.category_name }}
             </b-link>
@@ -39,9 +41,9 @@
 
           <!-- Price And Ratings -->
           <div class="ecommerce-details-price d-flex flex-wrap mt-1 ">
-            <h4 class="item-price mr-1 ml-0 pl-0">
-              {{ productDetail.price }} đ
-            </h4>
+            <h3 class="priceDetail mr-1 ml-0 pl-0">
+              {{ productDetail.price }} <span>đ</span>
+            </h3>
             <ul class="unstyled-list list-inline pl-1 border-left">
               <li
                 v-for="star in 5"
@@ -79,7 +81,7 @@
                 size="1.5x"
                 class="mr-1"
               />
-              <span class="freeShip text-success">Free Shipping</span>
+              <span class="freeShip text-success">Miễn phí ship</span>
             </li>
           </ul>
 
@@ -87,7 +89,7 @@
 
           <!-- Colors -->
           <div class="product-color-options">
-            <h6>Colors</h6>
+            <h6>Màu</h6>
             <ul class="list-unstyled mb-0">
               <li
                 v-for="color in colorOptions"
@@ -122,7 +124,7 @@
                 class="mr-50"
               />
               <span>
-                thêm vào giỏ hàng
+                Thêm vào giỏ hàng
               </span>
             </b-button>
             <b-button
@@ -252,5 +254,12 @@ export default {
 }
 .freeShip {
   font-weight: bold;
+}
+.priceDetail {
+  font-size: 18px;
+  font-weight: bold;
+}
+.titleName {
+  color: #5e5873 !important;
 }
 </style>

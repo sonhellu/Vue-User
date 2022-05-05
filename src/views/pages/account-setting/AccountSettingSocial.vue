@@ -26,7 +26,7 @@
           </div>
           <span
             class="quantity-title mb-1"
-          >Tổng giá tiền: {{ product.price }} đ</span>
+          >Tổng giá tiền: {{ product.price.toLocaleString() }} đ</span>
           <div class="item-quantity">
             <span class="quantity-title">Thời gian tạo đơn: </span>
             <span class="text-success">{{ product.created_at }}</span>

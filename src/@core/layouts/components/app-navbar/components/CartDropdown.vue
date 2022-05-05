@@ -8,7 +8,7 @@
     <template #button-content>
       <feather-icon
         :badge="danhSachProductCart.length"
-        class="text-body"
+        class="text-body cardTitle"
         icon="ShoppingCartIcon"
         size="23"
       />
@@ -22,7 +22,8 @@
         </h4>
         <b-badge
           pill
-          variant="light-primary"
+          class="cardTitle"
+          variant="light"
         />
       </div>
     </li>
@@ -59,7 +60,7 @@
           <small class="cart-item-by">{{ item.category_name }}</small>
         </div>
         <h6 class="cart-item-price mr-3">
-          {{ item.price }} đ
+          {{ item.price.toLocaleString() }} đ
         </h6>
       </b-media>
     </vue-perfect-scrollbar>
@@ -74,7 +75,7 @@
           Total:
         </h6>
         <h6 class="text-primary font-weight-bolder mb-0">
-          {{ totalAmount }} đ
+          {{ totalAmount.toLocaleString() }} đ
         </h6>
       </div>
       <b-button
@@ -183,5 +184,11 @@ export default {
       align-items: center;
     }
   }
+}
+.cardTitle {
+  color: white !important;
+}
+.badge.badge-up{
+  background: red !important;
 }
 </style>

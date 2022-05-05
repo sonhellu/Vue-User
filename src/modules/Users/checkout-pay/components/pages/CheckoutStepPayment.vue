@@ -88,7 +88,7 @@
               phẩm
             </div>
             <div class="detail-amt">
-              <strong>{{ paymentDetails.total.total }} đ</strong>
+              <strong>{{ paymentDetails.total.total.toLocaleString() }} đ</strong>
             </div>
           </li>
           <li class="price-detail">
@@ -107,7 +107,7 @@
               Tổng tiền thanh toán
             </div>
             <div class="detail-amt font-weight-bolder">
-              {{ paymentDetails.total.total }} đ
+              {{ paymentDetails.total.total.toLocaleString() }} đ
             </div>
           </li>
         </ul>

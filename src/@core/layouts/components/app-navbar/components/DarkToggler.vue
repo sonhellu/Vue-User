@@ -1,6 +1,7 @@
 <template>
   <b-nav-item @click="skin = isDark ? 'light' : 'dark'">
     <feather-icon
+      style="color : white"
       size="21"
       :icon="`${isDark ? 'Sun' : 'Moon'}Icon`"
     />

@@ -49,6 +49,7 @@ export default {
 
 <style lang="scss">
 h4 {
+  color: white !important;
   font-weight: 600;
   font-size: 1.2rem;
   cursor: pointer;
