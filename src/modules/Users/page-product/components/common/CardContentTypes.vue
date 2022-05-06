@@ -1,7 +1,7 @@
 <template>
   <section id="card-content-types">
     <b-row>
-      <b-col
+      <!-- <b-col
         md="6"
         lg="6"
       >
@@ -20,6 +20,25 @@
             cake jelly-o.
           </b-card-text>
         </b-card>
+      </b-col> -->
+      <b-col
+        md="6"
+        lg="6"
+      >
+        <b-card
+          :img-src="require('@/modules/Users/image/card3.jpg')"
+          overlay
+          text-variant="white"
+          img-alt="card img"
+          body-class="bg-overlay"
+        >
+          <b-card-text>
+            Tất cả những sản phẩm Mới nhất nằm trong BST được mở bán Hàng Tuần
+            sẽ được cập nhật liên tục tại đây. Chắc chắn bạn sẽ tìm thấy những
+            sản phẩm Đẹp Nhất - Vừa Vặn Nhất - Phù Hợp nhất với phong cách của
+            mình.
+          </b-card-text>
+        </b-card>
       </b-col>
     </b-row>
     <b-row>
@@ -27,7 +46,7 @@
         md="6"
         lg="6"
       />
-      <b-col>
+      <!-- <b-col>
         <b-card
           :img-src="require('@/modules/Users/image/card4.jpg')"
           img-bottom
@@ -38,7 +57,27 @@
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
           </b-card-text>
-        </b-card></b-col>
+        </b-card>
+      </b-col> -->
+      <b-col
+        md="6"
+        lg="6"
+      >
+        <b-card
+          :img-src="require('@/modules/Users/image/card4.jpg')"
+          overlay
+          text-variant="white"
+          img-alt="card img"
+          body-class="bg-overlay"
+        >
+          <b-card-text>
+            Tất cả những sản phẩm Mới nhất nằm trong BST được mở bán Hàng Tuần
+            sẽ được cập nhật liên tục tại đây. Chắc chắn bạn sẽ tìm thấy những
+            sản phẩm Đẹp Nhất - Vừa Vặn Nhất - Phù Hợp nhất với phong cách của
+            mình.
+          </b-card-text>
+        </b-card>
+      </b-col>
     </b-row>
   </section>
 </template>

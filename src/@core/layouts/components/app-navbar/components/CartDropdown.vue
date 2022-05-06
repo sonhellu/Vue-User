@@ -17,7 +17,7 @@
     <!-- Header -->
     <li class="dropdown-menu-header">
       <div class="dropdown-header d-flex">
-        <h4 class="notification-title mb-0 mr-auto">
+        <h4 class="notification-title mb-0 mr-auto titleGioHang">
           Giỏ hàng
         </h4>
         <b-badge
@@ -188,7 +188,12 @@ export default {
 .cardTitle {
   color: white !important;
 }
-.badge.badge-up{
+.badge.badge-up {
   background: red !important;
+}
+.titleGioHang {
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+  color: black !important;
 }
 </style>

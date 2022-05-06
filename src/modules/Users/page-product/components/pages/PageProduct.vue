@@ -117,6 +117,7 @@
       <Features />
     </b-card>
     <CardContentTypes />
+    <RelatedProducts />
   </div>
 </template>
 
@@ -134,6 +135,7 @@ import { mapGetters } from 'vuex'
 import Features from '@/modules/Users/page-product/components/common/Features.vue'
 import SwiperAutoplay from '@/modules/Users/page-product/components/common/swiper/SwiperAutoplay.vue'
 import CardContentTypes from '@/modules/Users/page-product/components/common/CardContentTypes.vue'
+import RelatedProducts from '../common/RelatedProducts.vue'
 
 export default {
   components: {
@@ -146,6 +148,7 @@ export default {
     BLink,
     BButton,
     SwiperAutoplay,
+    RelatedProducts,
   },
   data() {
     return {
@@ -173,7 +176,7 @@ export default {
     },
     getAllProductCart() {
       this.$store.dispatch('qlUser/getAllProductCart', {
-        id: this.UserInfor.id,
+        id: this.UserInfor?.id,
       })
     },
     addToCart(product) {

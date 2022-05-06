@@ -11,6 +11,14 @@ export function callAPIDangNhap(payload) {
   })
 }
 
+export function callAPIDangKi(payload) {
+  return HTTP({
+    url: ENDPOINT.AUTH.SIGN_UP,
+    method: 'POST',
+    data: payload,
+  })
+}
+
 export function callAPIBuyProduct(payload) {
   return HTTP({
     url: ENDPOINT.CUSTOMER.BUY_PRODUCT,

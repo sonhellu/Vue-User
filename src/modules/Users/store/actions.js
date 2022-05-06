@@ -12,11 +12,23 @@ import {
   callAPIDeleteCard,
   callAPIHistoryOrder,
   callAPIHistoryDelete,
+  callAPIDangKi,
 } from '@/modules/Users/api/index'
 // eslint-disable-next-line import/no-cycle
 
 const layDuLieuDangNhap = (context, payload) => new Promise((resolve, reject) => {
   callAPIDangNhap(payload)
+    .then(response => {
+      if (response) {
+        resolve(response)
+      }
+    })
+    .catch(error => {
+      reject(error)
+    })
+})
+const layDuLieuDangKi = (context, payload) => new Promise((resolve, reject) => {
+  callAPIDangKi(payload)
     .then(response => {
       if (response) {
         resolve(response)
@@ -132,6 +144,7 @@ const getHistoryDelete = (context, payload) => new Promise((resolve, reject) => 
 })
 
 export default {
+  layDuLieuDangKi,
   getHistoryDelete,
   getHistoryOrder,
   deleteProductToCart,

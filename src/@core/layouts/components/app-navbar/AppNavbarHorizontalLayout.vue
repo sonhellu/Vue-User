@@ -10,6 +10,7 @@
           <feather-icon
             icon="MenuIcon"
             size="21"
+            class="iconRespon"
           />
         </b-link>
       </li>
@@ -17,7 +18,7 @@
 
     <!-- Left Col -->
     <div
-      class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex"
+      class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex pl-2"
     >
       <b-link
         to="/page-product"
@@ -31,7 +32,7 @@
     </div>
 
     <!-- Right Col -->
-    <b-navbar-nav class="nav align-items-center ml-auto">
+    <b-navbar-nav class="nav align-items-center ml-auto pr-2">
       <dark-Toggler class="d-none d-lg-block" />
       <cart-dropdown />
       <user-dropdown />
@@ -69,6 +70,7 @@ export default {
 .headerProduct {
   background: #008848;
   height: 4.5rem;
+  border-radius: 0px !important;
 }
 .titleStore {
   color: white;
@@ -82,5 +84,9 @@ export default {
 }
 .storeTitle {
   align-items: baseline;
+}
+
+.iconRespon {
+  color: white;
 }
 </style>

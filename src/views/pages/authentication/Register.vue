@@ -4,7 +4,7 @@
       <!-- Brand logo-->
       <b-link class="brand-logo align-items-center">
         <h2 class="brand-text text-primary ml-1 mb-0">
-          BOO BOUTIQUE
+          JUN STORE
         </h2>
       </b-link>
       <!-- /Brand logo-->
@@ -37,8 +37,8 @@
           lg="12"
           class="px-xl-2 mx-auto"
         >
-          <b-card-title class="m-0 p-0">
-            Đăng kí 🚀
+          <b-card-title class="m-0 p-0 titleDangki">
+            Đăng kí
           </b-card-title>
 
           <!-- form -->
@@ -206,8 +206,6 @@ import {
 } from 'bootstrap-vue'
 import { required, email } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/ui/forms'
-import store from '@/store/index'
-import useJwt from '@/auth/jwt/useJwt'
 
 export default {
   components: {
@@ -233,8 +231,6 @@ export default {
       username: '',
       userEmail: '',
       password: '',
-      sideImg: require('@/assets/images/pages/register-v2.svg'),
-      // validation
       required,
       email,
     }
@@ -243,38 +239,46 @@ export default {
     passwordToggleIcon() {
       return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
     },
-    imgUrl() {
-      if (store.state.appConfig.layout.skin === 'dark') {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.sideImg = require('@/assets/images/pages/register-v2-dark.svg')
-        return this.sideImg
-      }
-      return this.sideImg
-    },
   },
   methods: {
     register() {
       this.$refs.registerForm.validate().then(success => {
         if (success) {
-          useJwt
-            .register({
-              username: this.username,
+          this.$store
+            .dispatch('qlUser/layDuLieuDangKi', {
               email: this.userEmail,
               password: this.password,
+              role: ['user'],
+              username: this.username,
             })
-            .then(response => {
-              useJwt.setToken(response.data.accessToken)
-              useJwt.setRefreshToken(response.data.refreshToken)
-              localStorage.setItem(
-                'userData',
-                JSON.stringify(response.data.userData),
-              )
-              this.$ability.update(response.data.userData.ability)
-              this.$router.push('/')
+            .then(res => {
+              console.log(res)
+              if (res && res.status === 200 && res.data.success === true) {
+                this.$toasted.global.showSuccessMessage({
+                  message: 'Đăng kí thành công!',
+                })
+                this.$router.push({
+                  path: '/login',
+                })
+              } else if (res && res.data && res.data.status === 502) {
+                this.$toasted.global.showErrorMessage({
+                  message: 'Username đã tồn tại!',
+                })
+              } else if (res && res.data && res.data.status === 501) {
+                this.$toasted.global.showErrorMessage({
+                  message: 'Email đã tồn tại!',
+                })
+              }
             })
-            .catch(error => {
-              this.$refs.registerForm.setErrors(error.response.data.error)
+            .catch(() => {
+              this.$toasted.global.showErrorMessage({
+                message: 'Đăng kí thất bại!',
+              })
             })
+
+          // localStorage.setItem('isLogin', true)
+          // localStorage.setItem('userData', JSON.stringify(this.UserData))
+          // this.$toasted.clear()
         }
       })
     },
@@ -285,4 +289,8 @@ export default {
 
 <style lang="scss">
 @import '@core/scss/vue/pages/page-auth.scss';
+.titleDangki {
+  color: #008848 !important;
+  font-size: 30px;
+}
 </style>

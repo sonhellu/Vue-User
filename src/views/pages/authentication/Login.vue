@@ -116,9 +116,9 @@
           </validation-observer>
 
           <b-card-text class="text-center mt-2">
-            <span>New on our platform? </span>
+            <span>Bạn chưa có tài khoản? </span>
             <b-link :to="{ name: 'auth-register' }">
-              <span>&nbsp;Create an account</span>
+              <span>&nbsp;Đăng kí ngay</span>
             </b-link>
           </b-card-text>
           <div class="divider my-2">
@@ -211,12 +211,6 @@ export default {
   },
   computed: {},
   methods: {
-    errorLoginToast() {
-      this.$toasted.clear()
-      this.$toasted.global.showErrorMessage({
-        message: 'Đăng nhập thất bại!',
-      })
-    },
     login() {
       this.$refs.loginForm.validate().then(success => {
         if (success) {
