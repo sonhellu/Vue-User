@@ -2,24 +2,24 @@
   <div class="auth-wrapper auth-v2">
     <b-row class="auth-inner m-0">
       <!-- Brand logo-->
-      <b-link class="brand-logo align-items-center">
+      <!-- <b-link class="brand-logo align-items-center">
         <h2 class="brand-text text-primary ml-1 mb-0">
           JUN STORE
         </h2>
-      </b-link>
+      </b-link> -->
       <!-- /Brand logo-->
 
       <!-- Left Text-->
       <b-col
         lg="8"
-        class="d-none d-lg-flex align-items-center p-5"
+        class="d-none d-lg-flex align-items-center p-0"
       >
         <div
-          class="w-100 d-lg-flex align-items-center justify-content-center px-5"
+          class="w-100 d-lg-flex align-items-center justify-content-center px-0"
         >
           <b-img
             fluid
-            src="@/modules/Users/image/slider.jpg"
+            src="@/modules/Users/image/login.jpg"
             alt="Register V2"
           />
         </div>

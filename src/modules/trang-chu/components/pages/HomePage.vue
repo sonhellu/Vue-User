@@ -1,20 +1,21 @@
 <template>
   <section>
-    HOME
+    <CardContentTypes />
   </section>
 </template>
 
 <script>
+import CardContentTypes from '../common/CardContentTypes.vue'
+
 export default {
   name: 'HomePage',
   components: {
+    CardContentTypes,
   },
   data() {
-    return {
-    }
+    return {}
   },
-  methods: {
-  },
+  methods: {},
 }
 </script>
 

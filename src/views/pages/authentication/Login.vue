@@ -2,24 +2,24 @@
   <div class="auth-wrapper auth-v2">
     <b-row class="auth-inner m-0">
       <!-- Brand logo-->
-      <b-link class="brand-logo align-items-center">
+      <!-- <b-link class="brand-logo align-items-center">
         <h2 class="brand-text text-primary ml-1 mb-0">
-          BOO BOUTIQUE
+          JUN STORE
         </h2>
-      </b-link>
+      </b-link> -->
       <!-- /Brand logo-->
 
       <!-- Left Text-->
       <b-col
         lg="8"
-        class="d-none d-lg-flex align-items-center p-5"
+        class="d-none d-lg-flex align-items-center p-0"
       >
         <div
-          class="w-100 d-lg-flex align-items-center justify-content-center px-5"
+          class="w-100 d-lg-flex align-items-center justify-content-center"
         >
           <b-img
             fluid
-            src="@/assets/images/logo/LogoShoes.jpg"
+            src="@/modules/Users/image/login.jpg"
             alt="Login V2"
           />
         </div>
@@ -38,7 +38,7 @@
           class="px-xl-2 mx-auto"
         >
           <b-card-title
-            class="mb-1 font-weight-bold"
+            class="mb-1 titleDangki"
             title-tag="h2"
           >
             ĐĂNG NHẬP
@@ -54,7 +54,7 @@
             >
               <!-- email -->
               <b-form-group
-                label="Tài khoản"
+                label="Username"
                 label-for="login-username"
               >
                 <validation-provider
@@ -68,7 +68,7 @@
                     v-model="username"
                     :state="errors.length > 0 ? false : null"
                     name="login-username"
-                    placeholder="Nhập tài khoản"
+                    placeholder="Nhập username"
                   />
                   <small class="text-danger">{{ errors[0] }}</small>
                 </validation-provider>

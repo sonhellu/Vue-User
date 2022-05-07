@@ -1,53 +1,6 @@
 <template>
   <b-card>
     <!-- media -->
-    <b-media no-body>
-      <b-media-aside>
-        <b-link>
-          <b-img
-            ref="previewEl"
-            rounded
-            :src="optionsLocal.avatar"
-            height="80"
-          />
-        </b-link>
-        <!--/ avatar -->
-      </b-media-aside>
-
-      <b-media-body class="mt-75 ml-75">
-        <!-- upload button -->
-        <b-button
-          v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-          variant="primary"
-          size="sm"
-          class="mb-75 mr-75"
-          @click="$refs.refInputEl.$el.click()"
-        >
-          Cập nhật
-        </b-button>
-        <b-form-file
-          ref="refInputEl"
-          v-model="profileFile"
-          accept=".jpg, .png, .gif"
-          :hidden="true"
-          plain
-          @input="inputImageRenderer"
-        />
-        <!--/ upload button -->
-
-        <!-- reset -->
-        <b-button
-          v-ripple.400="'rgba(186, 191, 199, 0.15)'"
-          variant="outline-secondary"
-          size="sm"
-          class="mb-75 mr-75"
-        >
-          Làm mới
-        </b-button>
-        <!--/ reset -->
-        <!-- <b-card-text>Allowed JPG, GIF or PNG. Max size of 800kB</b-card-text> -->
-      </b-media-body>
-    </b-media>
     <!--/ media -->
 
     <!-- form -->
@@ -59,7 +12,7 @@
             label-for="account-username"
           >
             <b-form-input
-              v-model="optionsLocal.username"
+              v-model="username"
               placeholder="Tên tài khoản"
               name="username"
             />
@@ -71,7 +24,7 @@
             label-for="account-name"
           >
             <b-form-input
-              v-model="optionsLocal.fullName"
+              v-model="fullName"
               name="name"
               placeholder="Tên"
             />
@@ -83,7 +36,7 @@
             label-for="account-e-mail"
           >
             <b-form-input
-              v-model="optionsLocal.email"
+              v-model="email"
               name="email"
               placeholder="Email"
             />
@@ -95,7 +48,7 @@
             label-for="account-company"
           >
             <b-form-input
-              v-model="optionsLocal.address"
+              v-model="address"
               name="company"
               placeholder="Địa chỉ"
             />
@@ -132,15 +85,6 @@
           >
             Cập nhật
           </b-button>
-          <b-button
-            v-ripple.400="'rgba(186, 191, 199, 0.15)'"
-            variant="outline-secondary"
-            type="reset"
-            class="mt-2"
-            @click.prevent="resetForm"
-          >
-            Làm mới
-          </b-button>
         </b-col>
       </b-row>
     </b-form>
@@ -149,7 +93,6 @@
 
 <script>
 import {
-  BFormFile,
   BButton,
   BForm,
   BFormGroup,
@@ -157,11 +100,6 @@ import {
   BRow,
   BCol,
   BCard,
-  BMedia,
-  BMediaAside,
-  BMediaBody,
-  BLink,
-  BImg,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
@@ -171,18 +109,12 @@ export default {
   components: {
     BButton,
     BForm,
-    BImg,
-    BFormFile,
     BFormGroup,
     BFormInput,
     BRow,
     BCol,
     // BAlert,
     BCard,
-    BMedia,
-    BMediaAside,
-    BMediaBody,
-    BLink,
   },
   directives: {
     Ripple,
@@ -195,16 +127,19 @@ export default {
   },
   data() {
     return {
-      optionsLocal: JSON.parse(JSON.stringify(this.generalData)),
+      username: '',
+      fullName: '',
+      address: '',
+      email: '',
       profileFile: null,
     }
   },
   methods: {
     resetForm() {
-      this.optionsLocal.username = ''
-      this.optionsLocal.fullName = ''
-      this.optionsLocal.address = ''
-      this.optionsLocal.email = ''
+      this.username = ''
+      this.fullName = ''
+      this.address = ''
+      this.email = ''
     },
   },
   setup() {

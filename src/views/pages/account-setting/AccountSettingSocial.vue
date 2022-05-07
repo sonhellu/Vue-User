@@ -1,7 +1,16 @@
 <template>
   <div class="list-view product-checkout mt-0">
     <!-- Products List -->
-    <div class="checkout-items">
+    <h5
+      v-if="danhSachGetListOrder.length === 0"
+      class="text-center"
+    >
+      Bạn chưa có đơn hàng nào!
+    </h5>
+    <div
+      v-if="danhSachGetListOrder.length > 0"
+      class="checkout-items"
+    >
       <b-card
         v-for="product in danhSachGetListOrder"
         :key="product.id"
