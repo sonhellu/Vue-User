@@ -86,7 +86,7 @@ export function callAPIHistoryOrder(payload) {
   return HTTP({
     url: ENDPOINT.CUSTOMER.HISTORYORDER,
     method: 'POST',
-    params: payload,
+    data: payload,
   })
 }
 

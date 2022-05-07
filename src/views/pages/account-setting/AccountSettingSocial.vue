@@ -1,10 +1,7 @@
 <template>
   <div class="list-view product-checkout mt-0">
     <!-- Products List -->
-    <h5
-      v-if="danhSachGetListOrder.length === 0"
-      class="text-center"
-    >
+    <h5 v-if="danhSachGetListOrder.length === 0" class="text-center">
       Bạn chưa có đơn hàng nào!
     </h5>
     <div
@@ -146,7 +143,7 @@ export default {
     getListHistoryOrder() {
       this.$store
         .dispatch('qlUser/getHistoryOrder', {
-          username: this.UserInfor.username,
+          user_name: this.UserInfor.username,
         })
         .then(res => {
           if (res && res.data && res.data.status === 200) {
