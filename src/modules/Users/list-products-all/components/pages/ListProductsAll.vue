@@ -95,7 +95,7 @@
                   @click="mqShallShowLeftSidebar = true"
                 />
                 <div class="search-results">
-                  {{ totalProducts }} kết quả
+                  {{ danhSachProductAll.length }} kết quả
                 </div>
               </div>
               <div class="view-options d-flex">

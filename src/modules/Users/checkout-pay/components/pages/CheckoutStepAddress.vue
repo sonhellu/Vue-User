@@ -144,13 +144,13 @@
       <div class="customer-card">
         <b-card title="John Doe">
           <b-card-text>
-            <span class="">Họ tên:</span>{{ formAdress.fullName }}
+            <span class="font-weight-bold">Họ tên: </span>{{ formAdress.fullName }}
           </b-card-text>
-          <b-card-text><span class="">Số điện thoại:</span>{{ formAdress.mobile }}
+          <b-card-text><span class="font-weight-bold">Số điện thoại: </span>{{ formAdress.mobile }}
           </b-card-text>
-          <b-card-text><span class="">Email:</span>{{ formAdress.email }}
+          <b-card-text><span class="font-weight-bold">Email: </span>{{ formAdress.email }}
           </b-card-text>
-          <b-card-text><span class="">Địa chỉ:</span>{{ formAdress.address }}</b-card-text>
+          <b-card-text><span class="font-weight-bold">Địa chỉ: </span>{{ formAdress.address }}</b-card-text>
           <b-button
             variant="primary"
             block

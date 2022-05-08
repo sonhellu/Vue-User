@@ -89,7 +89,7 @@
           <b-button
             variant="primary"
             class="btn-cart move-cart"
-            @click="addToCart(product)"
+            @click="addToCart(product.id)"
           >
             <feather-icon
               icon="ShoppingCartIcon"
@@ -179,31 +179,37 @@ export default {
         id: this.UserInfor?.id,
       })
     },
-    addToCart(product) {
-      const token = JSON.parse(localStorage.getItem('accessToken'))
-      if (!token) {
-        this.$router.push({ name: 'auth-login' })
-      } else {
-        this.$store
-          .dispatch('qlUser/addProductToCart', {
-            price: product.price,
-            product_id: product.id,
-            quantity: 1,
-            user_id: this.UserInfor.id,
-          })
-          .then(res => {
-            if (res && res.status) {
-              this.$toasted.global.showSuccessMessage({
-                message: 'Thêm vào giỏ hàng thành công!',
-              })
-              this.getAllProductCart()
-            } else {
-              this.$toasted.global.showSuccessMessage({
-                message: 'Sản phẩm đã có trong giỏ hàng!',
-              })
-            }
-          })
-      }
+    // addToCart(product) {
+    //   const token = JSON.parse(localStorage.getItem('accessToken'))
+    //   if (!token) {
+    //     this.$router.push({ name: 'auth-login' })
+    //   } else {
+    //     this.$store
+    //       .dispatch('qlUser/addProductToCart', {
+    //         price: product.price,
+    //         product_id: product.id,
+    //         quantity: 1,
+    //         user_id: this.UserInfor.id,
+    //       })
+    //       .then(res => {
+    //         if (res && res.data && res.data.status === 200) {
+    //           this.$toasted.global.showSuccessMessage({
+    //             message: 'Thêm vào giỏ hàng thành công!',
+    //           })
+    //           this.getAllProductCart()
+    //         } else {
+    //           this.$toasted.global.showErrorMessage({
+    //             message: 'Sản phẩm đã có trong giỏ hàng!',
+    //           })
+    //         }
+    //       })
+    //   }
+    // },
+    addToCart(id) {
+      console.log(id)
+      this.$router.push({
+        path: `/detail-product?id=${id}`,
+      })
     },
     viewAllProduct() {
       this.$router.push({ path: '/list-products-all' })

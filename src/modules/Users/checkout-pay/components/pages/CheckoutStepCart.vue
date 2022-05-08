@@ -10,7 +10,13 @@
       >
         <!-- Product Image -->
         <div class="item-img">
-          <b-link>
+          <b-link
+            class="text-body"
+            :to="{
+              name: 'detail-product',
+              query: { id: product.product_id },
+            }"
+          >
             <b-img
               :src="product.product_image"
               :alt="`${product.product_name}-${product.id}`"
@@ -26,10 +32,10 @@
                 {{ product.product_name }}
               </b-link>
             </h6>
-            <span
-              class="item-company"
-            >By
-              <b-link class="company-name">{{ product.brand }}</b-link></span>
+            <span class="item-company">
+              <b-link class="company-name ml-0">{{
+                product.category_name
+              }}</b-link></span>
             <div class="item-rating">
               <ul class="unstyled-list list-inline">
                 <li
@@ -50,7 +56,12 @@
               </ul>
             </div>
           </div>
-          <span class="text-success mb-1">Trong kho</span>
+          <span class="text-success">Trong kho</span>
+          <div class="item-quantity">
+            <span
+              class="quantity-title pb-1"
+            >Kích thước : {{ product.size }}</span>
+          </div>
           <div class="item-quantity">
             <span class="quantity-title">Số lượng: </span>
             <b-form-spinbutton
@@ -61,7 +72,6 @@
               @click="sortBy = sortOption"
             />
           </div>
-          <span class="text-success">Giảm giá</span>
         </b-card-body>
 
         <!-- Product Options/Actions -->
@@ -71,10 +81,7 @@
               <h4 class="item-price">
                 ${{ product.price * product.quantity }}
               </h4>
-              <p
-                v-if="product.hasFreeShipping"
-                class="card-text shipping"
-              >
+              <p class="card-text shipping">
                 <b-badge
                   pill
                   variant="light-success"

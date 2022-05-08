@@ -10,7 +10,9 @@
           md="5"
           class="d-flex align-items-center justify-content-center mb-2 mb-md-0"
         >
-          <div class="d-flex align-items-center justify-content-center">
+          <div
+            class="d-flex align-items-center justify-content-center imgDetail"
+          >
             <b-img
               :src="productDetail.image"
               :alt="`Image of ${productDetail.name}`"
@@ -25,9 +27,7 @@
           md="7"
         >
           <!-- Product Name -->
-          <h4
-            class="ml-0 pl-0 titleName"
-          >
+          <h4 class="ml-0 pl-0 titleName">
             {{ productDetail.name }}
           </h4>
 
@@ -85,27 +85,21 @@
             </li>
           </ul>
 
-          <hr>
+          <!-- <hr> -->
 
           <!-- Colors -->
           <div class="product-color-options">
-            <h6>Màu</h6>
+            <h6>Kích cỡ</h6>
             <ul class="list-unstyled mb-0">
               <li
-                v-for="color in colorOptions"
-                :key="color"
+                v-for="size in productDetail.size"
+                :key="size"
                 class="d-inline-block"
-                :class="{ selected: selectedColor === color }"
-                @click="selectedColor = color"
+                :class="{ selected: selectedColor === size }"
+                @click="selectedColor = size"
               >
-                <div
-                  class="color-option"
-                  :class="`b-${color}`"
-                >
-                  <div
-                    class="filloption"
-                    :class="`bg-${color}`"
-                  />
+                <div class="color-option b-info">
+                  {{ size }}
                 </div>
               </li>
             </ul>
@@ -118,6 +112,7 @@
               v-ripple.400="'rgba(255, 255, 255, 0.15)'"
               variant="primary"
               class="btn-cart mr-0 mr-sm-1 mb-1 mb-sm-0"
+              @click="addToCart(productDetail)"
             >
               <feather-icon
                 icon="ShoppingCartIcon"
@@ -214,6 +209,8 @@ export default {
     return {
       /* eslint-disable global-require */
       productDetail: {},
+      selectedColor: 'M' || 'S' || 'L',
+      UserInfor: JSON.parse(localStorage.getItem('UserData')),
       colorOptions: ['primary', 'success', 'warning', 'danger', 'info'],
     }
   },
@@ -227,6 +224,7 @@ export default {
   },
   created() {
     this.layDuLieuProductDetail()
+    this.getAllProductCart()
   },
   mounted() {},
   methods: {
@@ -237,6 +235,39 @@ export default {
           .then(res => {
             if (res && res.data && res.status === 200) {
               this.productDetail = { ...res.data }
+            }
+          })
+      }
+    },
+    getAllProductCart() {
+      this.$store.dispatch('qlUser/getAllProductCart', {
+        id: this.UserInfor?.id,
+      })
+    },
+    addToCart(product) {
+      const token = JSON.parse(localStorage.getItem('accessToken'))
+      if (!token) {
+        this.$router.push({ name: 'auth-login' })
+      } else {
+        this.$store
+          .dispatch('qlUser/addProductToCart', {
+            price: product.price,
+            product_id: this.ID,
+            quantity: 1,
+            user_id: this.UserInfor.id,
+            size: this.selectedColor,
+          })
+          .then(res => {
+            console.log(res)
+            if (res && res.data && res.data.status === 200) {
+              this.$toasted.global.showSuccessMessage({
+                message: 'Thêm vào giỏ hàng thành công!',
+              })
+              this.getAllProductCart()
+            } else {
+              this.$toasted.global.showErrorMessage({
+                message: 'Sản phẩm đã có trong giỏ hàng!',
+              })
             }
           })
       }
@@ -261,5 +292,8 @@ export default {
 }
 .titleName {
   color: #5e5873 !important;
+}
+.imgDetail {
+  max-height: 400px;
 }
 </style>
