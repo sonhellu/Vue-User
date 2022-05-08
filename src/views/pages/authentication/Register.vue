@@ -103,7 +103,7 @@
                   #default="{ errors }"
                   name="Password"
                   vid="password"
-                  rules="required"
+                  rules="required|password"
                 >
                   <b-input-group
                     class="input-group-merge"
@@ -129,7 +129,40 @@
                   <small class="text-danger">{{ errors[0] }}</small>
                 </validation-provider>
               </b-form-group>
-
+              <b-form-group
+                label-for="register-password"
+                label="Mật khẩu"
+              >
+                <validation-provider
+                  #default="{ errors }"
+                  name="Password"
+                  vid="password"
+                  rules="required|confirmed:Password"
+                >
+                  <b-input-group
+                    class="input-group-merge"
+                    :class="errors.length > 0 ? 'is-invalid' : null"
+                  >
+                    <b-form-input
+                      id="register-password"
+                      v-model="passwordConfirm"
+                      class="form-control-merge"
+                      :type="passwordFieldType"
+                      :state="errors.length > 0 ? false : null"
+                      name="register-password"
+                      placeholder="············"
+                    />
+                    <b-input-group-append is-text>
+                      <feather-icon
+                        :icon="passwordToggleIcon"
+                        class="cursor-pointer"
+                        @click="togglePasswordVisibility"
+                      />
+                    </b-input-group-append>
+                  </b-input-group>
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
               <b-button
                 variant="primary"
                 block
@@ -231,6 +264,7 @@ export default {
       username: '',
       userEmail: '',
       password: '',
+      passwordConfirm: '',
       required,
       email,
     }
@@ -250,6 +284,7 @@ export default {
               password: this.password,
               role: ['user'],
               username: this.username,
+              passwordConfirm: this.passwordConfirm,
             })
             .then(res => {
               console.log(res)

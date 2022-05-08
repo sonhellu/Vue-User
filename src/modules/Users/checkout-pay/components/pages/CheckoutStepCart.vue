@@ -58,9 +58,19 @@
           </div>
           <span class="text-success">Trong kho</span>
           <div class="item-quantity">
-            <span
-              class="quantity-title pb-1"
-            >Kích thước : {{ product.size }}</span>
+            <span class="quantity-title">Kích thước : {{ product.size }}</span>
+          </div>
+          <div class="product-color-options d-flex">
+            <span class="quantity-title pb-1 color123">Màu sắc : </span>
+            <div
+              class="color-option"
+              :class="`b-${product.size}`"
+            >
+              <div
+                class="filloption"
+                :class="`bg-${product.size}`"
+              />
+            </div>
           </div>
           <div class="item-quantity">
             <span class="quantity-title">Số lượng: </span>
@@ -265,3 +275,9 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+@import '@/@core/scss/base/pages/app-ecommerce-details.scss';
+.color123 {
+  padding-top: 3px;
+}
+</style>

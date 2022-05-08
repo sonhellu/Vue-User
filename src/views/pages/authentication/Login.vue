@@ -224,7 +224,7 @@ export default {
               if (res && res.data && roles === 'ROLE_USER') {
                 localStorage.setItem('UserData', JSON.stringify(res.data))
                 localStorage.setItem(
-                  'accessToken',
+                  'access_Token',
                   JSON.stringify(res.data.access_token),
                 )
                 this.$toasted.global.showSuccessMessage({

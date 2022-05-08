@@ -56,6 +56,7 @@
         <!-- Product Options/Actions -->
         <div class="item-options text-center d-flex orderHistoryButton pr-2">
           <b-button
+          v-if="product.status !== 2"
             variant="light"
             class="remove-wishlist"
             @click="showModalDelete(product.order_id)"

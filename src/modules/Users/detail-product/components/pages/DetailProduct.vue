@@ -71,9 +71,53 @@
             }}</span></b-card-text>
 
           <!-- Product Description -->
-          <b-card-text>{{ productDetail.description }}</b-card-text>
 
           <!-- Product Meta [Free shpping, EMI, etc.] -->
+          <hr>
+
+          <!-- Colors -->
+          <div class="product-color-options">
+            <h6>Kích cỡ</h6>
+            <ul class="list-unstyled mb-0">
+              <li
+                v-for="size in productDetail.size"
+                :key="size"
+                class="d-inline-block sizeOption"
+                :class="{ selected: selectedSize === size }"
+                @click="selectedSize = size"
+              >
+                <div class="size-option b-primary">
+                  <div class="filloptionSize">
+                    {{ size }}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="product-color-options">
+            <h6>Màu sắc</h6>
+            <ul class="list-unstyled mb-0">
+              <li
+                v-for="color in productDetail.color"
+                :key="color"
+                class="d-inline-block"
+                :class="{ selected: selectedColor === color }"
+                @click="selectedColor = color"
+              >
+                <div
+                  class="color-option"
+                  :class="`b-${color}`"
+                >
+                  <div
+                    class="filloption"
+                    :class="`bg-${color}`"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+          <hr>
           <ul class="product-features list-unstyled">
             <li v-if="productDetail.hasFreeShipping">
               <feather-icon
@@ -84,29 +128,7 @@
               <span class="freeShip text-success">Miễn phí ship</span>
             </li>
           </ul>
-
-          <!-- <hr> -->
-
-          <!-- Colors -->
-          <div class="product-color-options">
-            <h6>Kích cỡ</h6>
-            <ul class="list-unstyled mb-0">
-              <li
-                v-for="size in productDetail.size"
-                :key="size"
-                class="d-inline-block"
-                :class="{ selected: selectedColor === size }"
-                @click="selectedColor = size"
-              >
-                <div class="color-option b-info">
-                  {{ size }}
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <hr>
-
+          <b-card-text>{{ productDetail.description }}</b-card-text>
           <div class="d-flex flex-column flex-sm-row pt-1">
             <b-button
               v-ripple.400="'rgba(255, 255, 255, 0.15)'"
@@ -209,9 +231,9 @@ export default {
     return {
       /* eslint-disable global-require */
       productDetail: {},
-      selectedColor: 'M' || 'S' || 'L',
+      selectedSize: 'M' || 'S' || 'L' || 'XL' || 'XXL',
+      selectedColor: 'primary' || 'success' || 'warning' || 'danger' || 'info',
       UserInfor: JSON.parse(localStorage.getItem('UserData')),
-      colorOptions: ['primary', 'success', 'warning', 'danger', 'info'],
     }
   },
   computed: {
@@ -245,7 +267,7 @@ export default {
       })
     },
     addToCart(product) {
-      const token = JSON.parse(localStorage.getItem('accessToken'))
+      const token = JSON.parse(localStorage.getItem('access_Token'))
       if (!token) {
         this.$router.push({ name: 'auth-login' })
       } else {
@@ -256,6 +278,7 @@ export default {
             quantity: 1,
             user_id: this.UserInfor.id,
             size: this.selectedColor,
+            color: this.selectedColor,
           })
           .then(res => {
             console.log(res)
@@ -295,5 +318,8 @@ export default {
 }
 .imgDetail {
   max-height: 400px;
+}
+.sizeOption {
+  margin-right: 10px;
 }
 </style>

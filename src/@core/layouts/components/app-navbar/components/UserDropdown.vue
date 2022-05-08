@@ -103,7 +103,7 @@ export default {
     },
     logout() {
       // localStorage.removeItem('UserData')
-      localStorage.removeItem('accessToken')
+      localStorage.removeItem('access_Token')
       localStorage.removeItem('UserData')
       // Redirect to login page
       this.$router.go()

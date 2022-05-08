@@ -35,7 +35,7 @@ const router = new VueRouter({
 router.beforeEach((to, _, next) => {
   const publicPages = ['/login']
   const authRequired = !publicPages.includes(to.path)
-  const loggedIn = getValueFromStorageByKey('accessToken')
+  const loggedIn = getValueFromStorageByKey('access_Token')
   if (!authRequired && loggedIn) {
     return next('/page-product')
   }
