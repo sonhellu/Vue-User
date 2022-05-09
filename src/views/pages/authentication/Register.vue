@@ -131,13 +131,13 @@
               </b-form-group>
               <b-form-group
                 label-for="register-password"
-                label="Mật khẩu"
+                label="Mật lại khẩu"
               >
                 <validation-provider
                   #default="{ errors }"
                   name="Password"
                   vid="password"
-                  rules="required|confirmed:Password"
+                  rules="required|confirmed:password"
                 >
                   <b-input-group
                     class="input-group-merge"

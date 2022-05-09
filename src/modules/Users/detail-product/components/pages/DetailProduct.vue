@@ -117,8 +117,7 @@
               </li>
             </ul>
           </div>
-          <hr>
-          <ul class="product-features list-unstyled">
+                    <ul class="product-features list-unstyled">
             <li v-if="productDetail.hasFreeShipping">
               <feather-icon
                 icon="ShoppingCartIcon"
@@ -128,6 +127,7 @@
               <span class="freeShip text-success">Miễn phí ship</span>
             </li>
           </ul>
+          <hr>
           <b-card-text>{{ productDetail.description }}</b-card-text>
           <div class="d-flex flex-column flex-sm-row pt-1">
             <b-button
@@ -277,7 +277,7 @@ export default {
             product_id: this.ID,
             quantity: 1,
             user_id: this.UserInfor.id,
-            size: this.selectedColor,
+            size: this.selectedSize,
             color: this.selectedColor,
           })
           .then(res => {
@@ -321,5 +321,8 @@ export default {
 }
 .sizeOption {
   margin-right: 10px;
+}
+.product-color-options {
+  margin-bottom: 5px;
 }
 </style>

@@ -1,4 +1,4 @@
-<template>
+Jun<template>
   <b-card>
     <!-- media -->
     <!--/ media -->
@@ -12,7 +12,8 @@
             label-for="account-username"
           >
             <b-form-input
-              v-model="username"
+              v-model="UserInfor.username"
+              disabled
               placeholder="Tên tài khoản"
               name="username"
             />
@@ -36,7 +37,8 @@
             label-for="account-e-mail"
           >
             <b-form-input
-              v-model="email"
+              v-model="UserInfor.email"
+              disabled
               name="email"
               placeholder="Email"
             />
@@ -127,6 +129,7 @@ export default {
   },
   data() {
     return {
+      UserInfor: JSON.parse(localStorage.getItem('UserData')),
       username: '',
       fullName: '',
       address: '',

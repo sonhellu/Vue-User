@@ -59,8 +59,8 @@
           </h6>
           <small class="cart-item-by">{{ item.category_name }}</small>
         </div>
-        <h6 class="cart-item-price mr-3">
-          {{ item.price.toLocaleString() }} đ
+        <h6 class="cart-item-price mr-2">
+          {{ item.price.toLocaleString() }}đ
         </h6>
       </b-media>
     </vue-perfect-scrollbar>
