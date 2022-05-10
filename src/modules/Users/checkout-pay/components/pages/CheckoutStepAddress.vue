@@ -10,7 +10,9 @@
       <!-- Left Form -->
       <b-card no-body>
         <b-card-header class="flex-column align-items-start ml-0 pl-0">
-          <b-card-title>Thông tin giao hàng</b-card-title>
+          <b-card-title class="ThongTinGiaoHang">
+            Thông tin giao hàng
+          </b-card-title>
         </b-card-header>
         <b-card-body>
           <b-row>
@@ -89,6 +91,7 @@
                   <b-form-input
                     id="flat-house-no"
                     v-model="addressDetails.email"
+                    disabled
                     :state="getValidationState(validationContext)"
                     trim
                   />
@@ -142,7 +145,7 @@
 
       <!-- Right Col -->
       <div class="customer-card">
-        <b-card title="John Doe">
+        <b-card title="Địa chỉ mặc định">
           <b-card-text>
             <span class="font-weight-bold">Họ tên: </span>{{ formAdress.fullName }}
           </b-card-text>
@@ -219,6 +222,7 @@ export default {
   },
   data() {
     return {
+      UserInfor: JSON.parse(localStorage.getItem('UserData')),
       formAdress: {
         fullName: '',
         mobile: '',
@@ -227,7 +231,25 @@ export default {
       },
     }
   },
+  created() {
+    this.getInforUser()
+  },
   methods: {
+    getInforUser() {
+      this.$store
+        .dispatch('qlUser/getAPIUser', {
+          id: this.UserInfor.id,
+        })
+        .then(res => {
+          if (res && res.data) {
+            this.formAdress.fullName = res.data.fullName
+            this.addressDetails.email = this.UserInfor.email
+            this.formAdress.email = this.UserInfor.email
+            this.formAdress.mobile = res.data.phoneNumber
+            this.formAdress.address = res.data.address
+          }
+        })
+    },
     onSubmit() {
       this.formAdress = this.addressDetails
     },
@@ -251,4 +273,12 @@ export default {
 
 <style lang="scss">
 @import '@core/scss/vue/libs/vue-select.scss';
+.ThongTinGiaoHang {
+  color: black !important;
+}
+.card-title {
+  color: black !important;
+  padding-left: 0px;
+  margin-left: 0px;
+}
 </style>

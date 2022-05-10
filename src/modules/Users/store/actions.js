@@ -13,6 +13,8 @@ import {
   callAPIHistoryOrder,
   callAPIHistoryDelete,
   callAPIDangKi,
+  callAPIGetUser,
+  callAPIUpdateUser,
 } from '@/modules/Users/api/index'
 // eslint-disable-next-line import/no-cycle
 
@@ -143,7 +145,28 @@ const getHistoryDelete = (context, payload) => new Promise((resolve, reject) => 
     })
 })
 
+const getAPIUser = (context, payload) => new Promise((resolve, reject) => {
+  callAPIGetUser(payload)
+    .then(response => {
+      resolve(response)
+    })
+    .catch(error => {
+      reject(error)
+    })
+})
+
+const getUpdateUser = (context, payload) => new Promise((resolve, reject) => {
+  callAPIUpdateUser(payload)
+    .then(response => {
+      resolve(response)
+    })
+    .catch(error => {
+      reject(error)
+    })
+})
 export default {
+  getUpdateUser,
+  getAPIUser,
   layDuLieuDangKi,
   getHistoryDelete,
   getHistoryOrder,

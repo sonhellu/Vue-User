@@ -4,7 +4,10 @@ Jun<template>
     <!--/ media -->
 
     <!-- form -->
-    <b-form class="mt-2">
+    <b-form
+      class="mt-2"
+      @submit.prevent="UpdateProfile"
+    >
       <b-row>
         <b-col sm="6">
           <b-form-group
@@ -25,7 +28,7 @@ Jun<template>
             label-for="account-name"
           >
             <b-form-input
-              v-model="fullName"
+              v-model="DataUser.fullName"
               name="name"
               placeholder="Tên"
             />
@@ -46,44 +49,35 @@ Jun<template>
         </b-col>
         <b-col sm="6">
           <b-form-group
+            label="Số điện thoại"
+            label-for="account-company"
+          >
+            <b-form-input
+              v-model="DataUser.phoneNumber"
+              name="company"
+              placeholder="Địa chỉ"
+            />
+          </b-form-group>
+        </b-col>
+        <b-col sm="12">
+          <b-form-group
             label="Địa chỉ"
             label-for="account-company"
           >
             <b-form-input
-              v-model="address"
+              v-model="DataUser.address"
               name="company"
               placeholder="Địa chỉ"
             />
           </b-form-group>
         </b-col>
 
-        <!-- alert -->
-        <!-- <b-col
-          cols="12"
-          class="mt-75"
-        >
-          <b-alert
-            show
-            variant="warning"
-            class="mb-50"
-          >
-            <h4 class="alert-heading">
-              Your email is not confirmed. Please check your inbox.
-            </h4>
-            <div class="alert-body">
-              <b-link class="alert-link">
-                Resend confirmation
-              </b-link>
-            </div>
-          </b-alert>
-        </b-col> -->
-        <!--/ alert -->
-
         <b-col cols="12">
           <b-button
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
             class="mt-2 mr-1"
+            type="submit"
           >
             Cập nhật
           </b-button>
@@ -130,19 +124,44 @@ export default {
   data() {
     return {
       UserInfor: JSON.parse(localStorage.getItem('UserData')),
-      username: '',
-      fullName: '',
-      address: '',
-      email: '',
+      DataUser: {},
       profileFile: null,
     }
   },
+  created() {
+    this.getInforUser()
+  },
   methods: {
-    resetForm() {
-      this.username = ''
-      this.fullName = ''
-      this.address = ''
-      this.email = ''
+    getInforUser() {
+      this.$store
+        .dispatch('qlUser/getAPIUser', {
+          id: this.UserInfor.id,
+        })
+        .then(res => {
+          if (res && res.data) {
+            this.DataUser = res.data
+          }
+        })
+    },
+    UpdateProfile() {
+      this.$store
+        .dispatch('qlUser/getUpdateUser', {
+          address: this.DataUser.address,
+          full_name: this.DataUser.fullName,
+          phone_number: this.DataUser.phoneNumber,
+          user_id: this.UserInfor.id,
+        })
+        .then(res => {
+          if (res && res.status === 200 && res.data) {
+            this.$toasted.global.showSuccessMessage({
+              message: 'Cập nhật dữ liệu thành công!',
+            })
+          } else {
+            this.$toasted.global.showErrorMessage({
+              message: 'Cập nhật dữ liệu không thành công!',
+            })
+          }
+        })
     },
   },
   setup() {

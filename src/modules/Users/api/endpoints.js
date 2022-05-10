@@ -14,5 +14,7 @@ export default {
     DELETE_PRODUCT: '/api/customer/cart/remove',
     HISTORYORDER: '/api/customer/order/history',
     DELETE_ORDER: '/api/customer/order/delete',
+    GET_USER: '/api/customer/profile',
+    UPDATE_USER: '/api/customer/update-profile',
   },
 }

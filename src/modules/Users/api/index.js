@@ -97,3 +97,19 @@ export function callAPIHistoryDelete(payload) {
     params: payload,
   })
 }
+
+export function callAPIGetUser(payload) {
+  return HTTP({
+    url: ENDPOINT.CUSTOMER.GET_USER,
+    method: 'POST',
+    data: payload,
+  })
+}
+
+export function callAPIUpdateUser(payload) {
+  return HTTP({
+    url: ENDPOINT.CUSTOMER.UPDATE_USER,
+    method: 'POST',
+    data: payload,
+  })
+}
