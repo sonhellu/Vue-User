@@ -23,6 +23,34 @@
             >
               <validation-provider
                 #default="validationContext"
+                name="Email"
+                rules="required"
+              >
+                <b-form-group
+                  label="Email"
+                  label-for="flat-house-no"
+                  class="mb-2"
+                >
+                  <b-form-input
+                    id="flat-house-no"
+                    v-model="addressDetails.email"
+                    disabled
+                    :state="getValidationState(validationContext)"
+                    trim
+                  />
+                  <b-form-invalid-feedback>
+                    {{ validationContext.errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-group>
+              </validation-provider>
+            </b-col>
+
+            <b-col
+              cols="12"
+              md="6"
+            >
+              <validation-provider
+                #default="validationContext"
                 name="Họ và tên"
                 rules="required"
               >
@@ -74,33 +102,6 @@
             </b-col>
 
             <!-- Flat House No -->
-            <b-col
-              cols="12"
-              md="6"
-            >
-              <validation-provider
-                #default="validationContext"
-                name="Email"
-                rules="required"
-              >
-                <b-form-group
-                  label="Email"
-                  label-for="flat-house-no"
-                  class="mb-2"
-                >
-                  <b-form-input
-                    id="flat-house-no"
-                    v-model="addressDetails.email"
-                    disabled
-                    :state="getValidationState(validationContext)"
-                    trim
-                  />
-                  <b-form-invalid-feedback>
-                    {{ validationContext.errors[0] }}
-                  </b-form-invalid-feedback>
-                </b-form-group>
-              </validation-provider>
-            </b-col>
 
             <!-- Landmark -->
             <b-col
@@ -233,8 +234,13 @@ export default {
   },
   created() {
     this.getInforUser()
+    this.getUserData()
   },
   methods: {
+    getUserData() {
+      this.addressDetails.email = this.UserInfor.email
+      this.formAdress.email = this.addressDetails.email
+    },
     getInforUser() {
       this.$store
         .dispatch('qlUser/getAPIUser', {
@@ -243,8 +249,6 @@ export default {
         .then(res => {
           if (res && res.data) {
             this.formAdress.fullName = res.data.fullName
-            this.addressDetails.email = this.UserInfor.email
-            this.formAdress.email = this.UserInfor.email
             this.formAdress.mobile = res.data.phoneNumber
             this.formAdress.address = res.data.address
           }

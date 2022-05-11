@@ -11,7 +11,7 @@
         xl="4"
       >
         <b-card-title class="text-white">
-          Jun Store <br>
+          <span class="titleFooterJun"> Jun Store</span> <br>
           <span class="titleStoreJunaa">
             Với thông điệp "Refined Life", Jun mong muốn đem đến cho khách hàng
             một lối sống tinh gọn bằng các sản phẩm thời trang tinh tế.
@@ -23,7 +23,7 @@
         xl="3"
       >
         <b-card-title class="text-white">
-          Địa chỉ liên hệ <br>
+          <span class="titleFooterJun">Địa chỉ liên hệ</span> <br>
           <span class="titleStoreJunaa">
             Số 298 đường Cầu Diễn, quận Bắc Từ Liêm, Hà Nội <br>
             Cơ sở 2: Phường Tây Tựu, Bắc Từ Liêm, Hà Nội <br>
@@ -36,7 +36,7 @@
         xl="3"
       >
         <b-card-title class="text-white">
-          Thôn tin liên hệ <br>
+          <span class="titleFooterJun"> Thông tin liên hệ </span> <br>
           <span class="titleStoreJunaa">
             Hotline: 0376 620 677 <br>
             Email: caothethangnvx@gmail.com <br>
@@ -48,7 +48,7 @@
         xl="2"
       >
         <b-card-title class="text-white">
-          <span class="mb-1"> Mạng xã hội</span> <br>
+          <span class="titleFooterJun mb-1"> Mạng xã hội</span> <br>
           <span class="titleStoreJunaa">
             <facebook-icon
               size="1.5x"
@@ -97,8 +97,12 @@ export default {
 }
 .titleStoreJunaa {
   font-size: 13px;
+  color: white !important;
 }
 .iconContact {
   color: white;
+}
+.titleFooterJun {
+  color: white !important;
 }
 </style>

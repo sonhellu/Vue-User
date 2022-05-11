@@ -42,7 +42,7 @@
           <!-- Price And Ratings -->
           <div class="ecommerce-details-price d-flex flex-wrap mt-1 ">
             <h3 class="priceDetail mr-1 ml-0 pl-0">
-              {{ productDetail.price }} <span>đ</span>
+              {{ productDetail.price.toLocaleString() }} <span>đ</span>
             </h3>
             <ul class="unstyled-list list-inline pl-1 border-left">
               <li

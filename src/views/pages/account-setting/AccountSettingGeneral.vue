@@ -130,6 +130,7 @@ export default {
   },
   created() {
     this.getInforUser()
+    this.getAllProductCart()
   },
   methods: {
     getInforUser() {
@@ -162,6 +163,11 @@ export default {
             })
           }
         })
+    },
+    getAllProductCart() {
+      this.$store.dispatch('qlUser/getAllProductCart', {
+        id: this.UserInfor.id,
+      })
     },
   },
   setup() {

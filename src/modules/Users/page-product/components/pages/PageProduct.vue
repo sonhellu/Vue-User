@@ -11,7 +11,11 @@
         class="ecommerce-card"
         no-body
       >
-        <div class="item-img text-center">
+        <div class="item-img text-center saleProduct">
+          <div class="saleProduct__title">
+            <span class="saleProduct__title--percent">-30%</span> <br>
+            Giảm
+          </div>
           <b-link
             class="text-body"
             :to="{
@@ -220,4 +224,22 @@ export default {
 
 <style lang="scss">
 @import '@core/scss/base/pages/app-ecommerce.scss';
+.saleProduct {
+  padding-top: 0 !important;
+  position: relative;
+  flex-direction: column;
+  &__title {
+    padding-top: 3px;
+    position: absolute;
+    max-width: 50px;
+    width: 100%;
+    right: 0;
+    min-height: 21%;
+    color: white;
+    background: #F5CE2F;
+    &--percent {
+      color: red;
+    }
+  }
+}
 </style>

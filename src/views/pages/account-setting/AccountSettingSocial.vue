@@ -1,7 +1,10 @@
 <template>
   <div class="list-view product-checkout mt-0">
     <!-- Products List -->
-    <h5 v-if="danhSachGetListOrder.length === 0" class="text-center">
+    <h5
+      v-if="danhSachGetListOrder.length === 0"
+      class="text-center"
+    >
       Bạn chưa có đơn hàng nào!
     </h5>
     <div
@@ -21,18 +24,15 @@
           <div class="item-name">
             <h3 class="m-0 p-0 texttile">
               <b-link class="text-body">
-                {{ product.user_name }}
+                {{ product.full_name }}
               </b-link>
             </h3>
             <span class="item-company">
               <span class="quantity-title">Số điện thoại: </span>
-              <b-link class="company-name">{{
+              <b-link class="text-success">{{
                 product.phone_number
               }}</b-link></span>
           </div>
-          <span
-            class="quantity-title mb-1"
-          >Tổng giá tiền: {{ product.price.toLocaleString() }} đ</span>
           <div class="item-quantity">
             <span class="quantity-title">Thời gian tạo đơn: </span>
             <span class="text-success">{{ product.created_at }}</span>
@@ -51,12 +51,15 @@
             <span class="quantity-title">Địa chỉ giao hàng: </span>
             <span class="text-success">{{ product.address }}</span>
           </div>
+          <span
+            class="quantity-title mb-1 "
+          >Tổng giá tiền: <span class="text-success"> {{ product.price.toLocaleString() }} đ </span></span>
         </b-card-body>
 
         <!-- Product Options/Actions -->
         <div class="item-options text-center d-flex orderHistoryButton pr-2">
           <b-button
-          v-if="product.status !== 2 && product.status !== 1"
+            v-if="product.status !== 2 && product.status !== 1"
             variant="light"
             class="remove-wishlist"
             @click="showModalDelete(product.order_id)"

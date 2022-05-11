@@ -3,7 +3,7 @@
     <div class="mt-2 mb-2 text-center">
       <h4 class="textTuongTu">
         Sản phẩm tương tự
-        <div class="unline"></div>
+        <div class="unline" />
       </h4>
     </div>
 
@@ -18,10 +18,14 @@
       >
         <b-link>
           <div class="item-heading">
-            <h5 class="text-truncate mb-0">
+            <h5 class="text-truncate mb-0 text-center">
               {{ product.name }}
             </h5>
-            <small class="text-body">{{ product.category_name }}</small>
+            <small
+              class="text-body "
+            ><div class="text-center">{{
+              product.category_name
+            }}</div></small>
           </div>
           <div class="img-container w-100 mx-auto py-75">
             <b-img
@@ -29,7 +33,7 @@
               fluid
             />
           </div>
-          <div class="item-meta">
+          <div class="item-meta text-center">
             <ul class="unstyled-list list-inline mb-25">
               <li
                 v-for="star in 5"
@@ -68,9 +72,7 @@
 </template>
 
 <script>
-import {
-  BCardBody, BImg, BLink,
-} from 'bootstrap-vue'
+import { BCardBody, BImg, BLink } from 'bootstrap-vue'
 import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
@@ -137,11 +139,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@core/scss/vue/libs/swiper.scss';
+/* @import '@core/scss/vue/libs/swiper.scss'; */
+@import '@/@core/scss/vue/libs/swiper.scss';
 @import '~swiper/css/swiper.css';
 .textTuongTu {
   color: gray !important;
-   font-size: 25px;
+  font-size: 25px;
 }
 .unline {
   background: gray;
