@@ -23,15 +23,33 @@
             </h5>
             <small
               class="text-body "
-            ><div class="text-center">{{
-              product.category_name
-            }}</div></small>
+            ><div class="text-center">{{ product.category_name }}</div></small>
           </div>
           <div class="img-container w-100 mx-auto py-75">
-            <b-img
-              :src="product.image"
-              fluid
-            />
+            <div>
+              <b-link
+                class="text-body"
+                :to="{
+                  name: 'detail-product',
+                  query: { id: product.id },
+                }"
+              >
+                <div
+                  v-if="product.sale_percentage"
+                  class="saleProductRelate__title text-center"
+                >
+                  <span
+                    class="saleProductRelate__title--percent"
+                  >-{{ product.sale_percentage }}%</span>
+                  <br>
+                  Giảm
+                </div>
+                <b-img
+                  :src="product.image"
+                  fluid
+                />
+              </b-link>
+            </div>
           </div>
           <div class="item-meta text-center">
             <ul class="unstyled-list list-inline mb-25">
@@ -151,5 +169,23 @@ export default {
   height: 2px;
   width: 15%;
   margin: 0 auto;
+}
+.saleProductRelate {
+  padding-top: 0 !important;
+  position: relative;
+  flex-direction: column;
+  &__title {
+    padding-top: 3px;
+    position: absolute;
+    max-width: 50px;
+    width: 100%;
+    right: 0;
+    min-height: 14%;
+    color: white;
+    background: #f5ce2f;
+    &--percent {
+      color: red;
+    }
+  }
 }
 </style>

@@ -3,7 +3,9 @@
     <div class="list-view product-checkout mt-0">
       <!-- Products List -->
       <div v-if="danhSachProductCart.length === 0">
-        <h3 class="text-center mt-8">Giỏ hàng rỗng</h3>
+        <h3 class="text-center mt-8">
+          Giỏ hàng rỗng
+        </h3>
       </div>
       <div
         v-else
@@ -42,26 +44,7 @@
               <span class="item-company">
                 <b-link class="company-name ml-0">{{
                   product.category_name
-                }}</b-link></span>
-              <div class="item-rating">
-                <ul class="unstyled-list list-inline">
-                  <li
-                    v-for="star in 5"
-                    :key="star"
-                    class="ratings-list-item"
-                    :class="{ 'ml-25': star - 1 }"
-                  >
-                    <feather-icon
-                      icon="StarIcon"
-                      size="16"
-                      :class="[
-                        { 'fill-current': star <= product.rating },
-                        star <= product.rating ? 'text-warning' : 'text-muted',
-                      ]"
-                    />
-                  </li>
-                </ul>
-              </div>
+                }} - <span style="color:red">{{product.price.toLocaleString()}} đ </span></b-link></span>
             </div>
             <span class="text-success">Trong kho</span>
             <div class="item-quantity">

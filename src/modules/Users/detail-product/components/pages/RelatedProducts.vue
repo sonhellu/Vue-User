@@ -1,8 +1,10 @@
 <template>
   <b-card-body>
     <div class="mt-2 mb-2 text-center">
-      <h4> Sản phẩm tương tự</h4>
-      <b-card-text>Bạn cũng có thể biết mặt hàng này</b-card-text>
+      <h4 class="textTuongTu">
+        Sản phẩm tương tự
+        <div class="unline" />
+      </h4>
     </div>
 
     <!-- Swiper -->
@@ -16,18 +18,32 @@
       >
         <b-link>
           <div class="item-heading">
-            <h5 class="text-truncate mb-0">
+            <h5 class="text-truncate mb-0 text-center">
               {{ product.name }}
             </h5>
-            <small class="text-body">{{ product.category_name }}</small>
+            <small
+              class="text-body "
+            ><div class="text-center">{{ product.category_name }}</div></small>
           </div>
           <div class="img-container w-100 mx-auto py-75">
-            <b-img
-              :src="product.image"
-              fluid
-            />
+            <div @click="handleProduct(product.id)">
+              <div
+                v-if="product.sale_percentage"
+                class="saleProductRelate__title text-center"
+              >
+                <span
+                  class="saleProductRelate__title--percent"
+                >-{{ product.sale_percentage }}%</span>
+                <br>
+                Giảm
+              </div>
+              <b-img
+                :src="product.image"
+                fluid
+              />
+            </div>
           </div>
-          <div class="item-meta">
+          <div class="item-meta text-center">
             <ul class="unstyled-list list-inline mb-25">
               <li
                 v-for="star in 5"
@@ -66,16 +82,13 @@
 </template>
 
 <script>
-import {
-  BCardBody, BCardText, BImg, BLink,
-} from 'bootstrap-vue'
+import { BCardBody, BImg, BLink } from 'bootstrap-vue'
 import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 export default {
   components: {
     BCardBody,
-    BCardText,
     BImg,
     BLink,
 
@@ -94,6 +107,12 @@ export default {
   methods: {
     layDanhSachProductAll() {
       this.$store.dispatch('qlUser/layDuLieuProductAll', { page: 0, sort: 0 })
+    },
+    handleProduct(id) {
+      this.$router.push({
+        path: `/detail-product?id=${id}`,
+      })
+      this.$router.go()
     },
   },
   setup() {
@@ -136,6 +155,35 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@core/scss/vue/libs/swiper.scss';
+/* @import '@core/scss/vue/libs/swiper.scss'; */
+@import '@/@core/scss/vue/libs/swiper.scss';
 @import '~swiper/css/swiper.css';
+.textTuongTu {
+  color: gray !important;
+  font-size: 25px;
+}
+.unline {
+  background: gray;
+  height: 2px;
+  width: 15%;
+  margin: 0 auto;
+}
+.saleProductRelate {
+  padding-top: 0 !important;
+  position: relative;
+  flex-direction: column;
+  &__title {
+    padding-top: 3px;
+    position: absolute;
+    max-width: 50px;
+    width: 100%;
+    right: 0;
+    min-height: 14%;
+    color: white;
+    background: #f5ce2f;
+    &--percent {
+      color: red;
+    }
+  }
+}
 </style>

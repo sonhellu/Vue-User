@@ -12,8 +12,8 @@
         no-body
       >
         <div class="item-img text-center saleProduct">
-          <div class="saleProduct__title">
-            <span class="saleProduct__title--percent">-30%</span> <br>
+          <div v-if="product.sale_percentage" class="saleProduct__title">
+            <span class="saleProduct__title--percent">-{{product.sale_percentage}}%</span> <br>
             Giảm
           </div>
           <b-link
@@ -55,8 +55,11 @@
               </ul>
             </div>
             <div>
-              <h6 class="item-price">
-                {{ product.price.toLocaleString() }} đ
+              <h6 class="item-price" v-if="product.sale_percentage">
+                {{ (product.price * (100 - product.sale_percentage)/100).toLocaleString() }} đ
+              </h6>
+              <h6 class="item-price" v-else>
+                {{ product.price.toLocaleString()}} đ
               </h6>
             </div>
           </div>
@@ -165,7 +168,8 @@ export default {
       danhSachProductAll: 'qlUser/danhSachProductAll',
     }),
     topProductAll() {
-      const newArr = this.danhSachProductAll.slice(0, 8)
+      // const newArr = this.danhSachProductAll.slice(0, 8)
+      const newArr = this.danhSachProductAll
       return newArr
     },
   },
@@ -210,7 +214,6 @@ export default {
     //   }
     // },
     addToCart(id) {
-      console.log(id)
       this.$router.push({
         path: `/detail-product?id=${id}`,
       })
@@ -234,7 +237,7 @@ export default {
     max-width: 50px;
     width: 100%;
     right: 0;
-    min-height: 21%;
+    min-height: 22%;
     color: white;
     background: #F5CE2F;
     &--percent {

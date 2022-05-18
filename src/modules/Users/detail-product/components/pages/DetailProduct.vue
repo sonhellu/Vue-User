@@ -38,12 +38,44 @@
               {{ productDetail.category_name }}
             </b-link>
           </b-card-text>
+          <b-card-text class="item-company mb-0">
+            <span>Xuất xứ -</span>
+            <b-link class="company-name">
+              {{ productDetail.source }}
+            </b-link>
+          </b-card-text>
 
           <!-- Price And Ratings -->
           <div class="ecommerce-details-price d-flex flex-wrap mt-1 ">
-            <h3 class="priceDetail mr-1 ml-0 pl-0">
+            <h3
+              v-if="productDetail.sale_percentage === 0"
+              class="priceDetail mr-1 ml-0 pl-0"
+            >
               {{ productDetail.price.toLocaleString() }} <span>đ</span>
             </h3>
+            <h3
+              v-if="productDetail.sale_percentage !== 0"
+              class="priceDetail mr-1 ml-0 pl-0"
+            >
+              <del>
+                {{ productDetail.price.toLocaleString() }} <span>đ</span>
+              </del>
+            </h3>
+            <h3
+              v-if="productDetail.sale_percentage !== 0"
+              class="priceDetail mr-1 ml-0 pl-0"
+              style="color: red"
+            >
+              {{
+                (
+                  (productDetail.price *
+                    (100 - productDetail.sale_percentage)) /
+                  100
+                ).toLocaleString()
+              }}
+              <span>đ</span>
+            </h3>
+
             <ul class="unstyled-list list-inline pl-1 border-left">
               <li
                 v-for="star in 5"
@@ -67,8 +99,13 @@
           <!-- Avability -->
           <b-card-text>{{ productDetail.quantity > 0 ? 'Còn hàng' : 'Hết hàng' }} -
             <span class="text-success">{{
-              productDetail.quantity > 1 ? 'Trong kho' : 'Vui lòng đợi'
-            }}</span></b-card-text>
+              productDetail.quantity > 1 ? 'Trong kho' : 'vui lòng đợi!'
+            }}</span>
+          </b-card-text>
+          <b-card-text v-if="productDetail.quantity > 0">
+            Số lượng -
+            <span class="text-success">{{ productDetail.quantity }}</span>
+          </b-card-text>
 
           <!-- Product Description -->
 
@@ -117,7 +154,7 @@
               </li>
             </ul>
           </div>
-                    <ul class="product-features list-unstyled">
+          <ul class="product-features list-unstyled">
             <li v-if="productDetail.hasFreeShipping">
               <feather-icon
                 icon="ShoppingCartIcon"
@@ -206,8 +243,10 @@ import {
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import Ripple from 'vue-ripple-directive'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Features from '@/modules/Users/page-product/components/common/Features.vue'
-import RelatedProducts from '@/modules/Users/detail-product/components/common/RelatedProducts.vue'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import RelatedProducts from '@/modules/Users/detail-product/components/pages/RelatedProducts.vue'
 
 export default {
   directives: {
@@ -273,7 +312,7 @@ export default {
       } else {
         this.$store
           .dispatch('qlUser/addProductToCart', {
-            price: product.price,
+            price: (product.price * (100 - product.sale_percentage)) / 100,
             product_id: this.ID,
             quantity: 1,
             user_id: this.UserInfor.id,
@@ -284,7 +323,7 @@ export default {
             console.log(res)
             if (res && res.data && res.data.status === 200) {
               this.$toasted.global.showSuccessMessage({
-                message: 'Thêm vào giỏ hàng thành công!',
+                message: 'Thêm sản phẩm vào giỏ hàng thành công!',
               })
               this.getAllProductCart()
             } else {

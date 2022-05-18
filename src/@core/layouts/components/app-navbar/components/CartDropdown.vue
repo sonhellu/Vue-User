@@ -72,7 +72,7 @@
     >
       <div class="d-flex justify-content-between mb-1">
         <h6 class="font-weight-bolder mb-0">
-          Total:
+          Tổng:
         </h6>
         <h6 class="text-primary font-weight-bolder mb-0">
           {{ totalAmount.toLocaleString() }} đ

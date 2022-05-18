@@ -179,21 +179,36 @@
           class="ecommerce-card"
           no-body
         >
-          <div class="item-img text-center">
-            <b-link
-              class="text-body"
-              :to="{
-                name: 'detail-product',
-                query: { id: product.id },
-              }"
+          <div
+            class="text-center
+            saleProductList"
+          >
+            <div
+              v-if="product.sale_percentage"
+              class="saleProductList__title"
             >
-              <b-img
-                :alt="`${product.name}-${product.id}`"
-                fluid
-                class="card-img-top"
-                :src="product.image"
-              />
-            </b-link>
+              <span
+                class="saleProductList__title--percent"
+              >-{{ product.sale_percentage }}%</span>
+              <br>
+              Giảm
+            </div>
+            <div class="item-img text-center">
+              <b-link
+                class="text-body"
+                :to="{
+                  name: 'detail-product',
+                  query: { id: product.id },
+                }"
+              >
+                <b-img
+                  :alt="`${product.name}-${product.id}`"
+                  fluid
+                  class="card-img-top"
+                  :src="product.image"
+                />
+              </b-link>
+            </div>
           </div>
 
           <!-- Product Details -->
@@ -354,8 +369,10 @@ export default {
       },
       sortBy: { text: 'Mặc định', value: '0' },
       sortByOptions: [
-        { text: 'Mặc định', value: '0' },
-        { text: 'Cao xuống thấp', value: '1' },
+        { text: 'Mặc định', value: '-1' },
+        { text: 'A-Z', value: '0' },
+        { text: 'Z-A', value: '1' },
+        { text: 'Cao xuống thấp', value: '3' },
         { text: 'Thấp đến cao', value: '2' },
       ],
       filterOptions: {
@@ -502,6 +519,24 @@ export default {
 .price-range-defined-radio-group {
   ::v-deep > .custom-control {
     margin-bottom: 0.75rem;
+  }
+}
+.saleProductList {
+  padding-top: 0 !important;
+  position: relative;
+  flex-direction: column;
+  &__title {
+    padding-top: 3px;
+    position: absolute;
+    max-width: 50px;
+    width: 100%;
+    right: 0;
+    min-height: 18%;
+    color: white;
+    background: #f5ce2f;
+    &--percent {
+      color: red;
+    }
   }
 }
 </style>
