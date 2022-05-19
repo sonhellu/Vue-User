@@ -35,7 +35,9 @@
           </div>
           <div class="item-quantity">
             <span class="quantity-title">Thời gian tạo đơn: </span>
-            <span class="text-success">{{ product.created_at }}</span>
+            <span class="text-success">{{
+              new Date(product.created_at).toLocaleDateString('en-US')
+            }}</span>
           </div>
           <div class="item-quantity">
             <span class="quantity-title">Tình trạng đơn hàng: </span>
@@ -53,7 +55,10 @@
           </div>
           <span
             class="quantity-title mb-1 "
-          >Tổng giá tiền: <span class="text-success"> {{ product.price.toLocaleString() }} đ </span></span>
+          >Tổng giá tiền:
+            <span class="text-success">
+              {{ product.price.toLocaleString() }} đ
+            </span></span>
         </b-card-body>
 
         <!-- Product Options/Actions -->
@@ -120,6 +125,9 @@ export default {
     this.getListHistoryOrder()
   },
   methods: {
+    // convertTime(value) {
+    //   const date = new Date(value)
+    // },
     showModalDelete(idRow) {
       this.idRow = idRow
       this.title = 'XÁC NHẬN HỦY ĐƠN HÀNG'

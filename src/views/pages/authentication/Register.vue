@@ -2,11 +2,16 @@
   <div class="auth-wrapper auth-v2">
     <b-row class="auth-inner m-0">
       <!-- Brand logo-->
-      <!-- <b-link class="brand-logo align-items-center">
+      <b-link
+        class="brand-logo align-items-center"
+        :to="{
+          path: '/page-product',
+        }"
+      >
         <h2 class="brand-text text-primary ml-1 mb-0">
           JUN STORE
         </h2>
-      </b-link> -->
+      </b-link>
       <!-- /Brand logo-->
 
       <!-- Left Text-->

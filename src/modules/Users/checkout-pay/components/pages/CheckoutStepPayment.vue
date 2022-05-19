@@ -165,7 +165,7 @@ export default {
           price: item.price,
           product_id: item.product_id,
           quantity: item.quantity,
-          size: 'string',
+          size: item.size,
           total_price: item.price * item.quantity,
         })
       })

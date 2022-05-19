@@ -2,11 +2,16 @@
   <div class="auth-wrapper auth-v2">
     <b-row class="auth-inner m-0">
       <!-- Brand logo-->
-      <!-- <b-link class="brand-logo align-items-center">
+      <b-link
+        class="brand-logo align-items-center"
+        :to="{
+          path: '/page-product',
+        }"
+      >
         <h2 class="brand-text text-primary ml-1 mb-0">
           JUN STORE
         </h2>
-      </b-link> -->
+      </b-link>
       <!-- /Brand logo-->
 
       <!-- Left Text-->
@@ -14,9 +19,7 @@
         lg="8"
         class="d-none d-lg-flex align-items-center p-0"
       >
-        <div
-          class="w-100 d-lg-flex align-items-center justify-content-center"
-        >
+        <div class="w-100 d-lg-flex align-items-center justify-content-center">
           <b-img
             fluid
             src="@/modules/Users/image/login.jpg"
@@ -123,7 +126,7 @@
           </b-card-text>
           <div class="divider my-2">
             <div class="divider-text">
-              or
+              hoặc
             </div>
           </div>
 
