@@ -42,9 +42,13 @@
                 </b-link>
               </h6>
               <span class="item-company">
-                <b-link class="company-name ml-0">{{
-                  product.category_name
-                }} - <span style="color:red">{{product.price.toLocaleString()}} đ </span></b-link></span>
+                <b-link
+                  class="company-name ml-0"
+                >{{ product.category_name }} -
+                  <span
+                    style="color:red"
+                  >{{ product.price.toLocaleString() }} đ
+                  </span></b-link></span>
             </div>
             <span class="text-success">Trong kho</span>
             <div class="item-quantity">
@@ -64,6 +68,7 @@
                 />
               </div>
             </div>
+            {{ product.quantity }}
             <div class="item-quantity">
               <span class="quantity-title">Số lượng: </span>
               <b-form-spinbutton
@@ -124,15 +129,6 @@
       <div class="checkout-options">
         <b-card>
           <label class="section-label mb-1">Tổng quan</label>
-          <b-input-group class="input-group-merge coupons">
-            <b-form-input placeholder="Mã giảm giá" />
-            <b-input-group-append is-text>
-              <span
-                id="input-coupons"
-                class="input-group-text text-primary cursor-pointer"
-              >Áp dụng</span>
-            </b-input-group-append>
-          </b-input-group>
           <hr>
           <div class="price-details">
             <h6 class="price-title">
@@ -141,10 +137,18 @@
             <ul class="list-unstyled">
               <li class="price-detail">
                 <div class="detail-title">
-                  Số lượng sản phẩm
+                  Số lượng loại sản phẩm
                 </div>
                 <div class="detail-amt">
                   {{ danhSachProductCart.length }}
+                </div>
+              </li>
+              <li class="price-detail">
+                <div class="detail-title">
+                  Số lượng sản phẩm
+                </div>
+                <div class="detail-amt">
+                  {{ TotalProduct }}
                 </div>
               </li>
               <li class="price-detail">
@@ -185,9 +189,6 @@
 import {
   BButton,
   BCard,
-  BInputGroup,
-  BFormInput,
-  BInputGroupAppend,
   BCardBody,
   BLink,
   BImg,
@@ -206,9 +207,6 @@ export default {
     BFormSpinbutton,
     BButton,
     BCard,
-    BInputGroup,
-    BFormInput,
-    BInputGroupAppend,
 
     // SFC
     // CheckoutStepCartProducts,
@@ -222,6 +220,7 @@ export default {
   data() {
     return {
       UserInfor: JSON.parse(localStorage.getItem('UserData')),
+      TotalProduct: 0,
     }
   },
   computed: {
@@ -229,13 +228,16 @@ export default {
       danhSachProductCart: 'qlUser/danhSachProductCart',
     }),
     totalAmount() {
+      let totalCategory = 0
       let totalProduct = 0
       this.danhSachProductCart.forEach(i => {
-        totalProduct += i.price * i.quantity
-        this.totalDetails.total = totalProduct
+        totalCategory += i.price * i.quantity
+        this.totalDetails.total = totalCategory
         this.totalDetails.listProduct = this.danhSachProductCart
+        totalProduct += i.quantity
+        this.TotalProduct = totalProduct
       })
-      return totalProduct
+      return totalCategory
     },
   },
   created() {
